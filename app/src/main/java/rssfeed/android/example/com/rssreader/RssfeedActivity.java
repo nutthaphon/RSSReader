@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class RssfeedActivity extends ActionBarActivity {
+public class RssfeedActivity extends ActionBarActivity implements MyListFragment.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +35,14 @@ public class RssfeedActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRssItemSelected(String link) {
+        DetailFragment fragment = (DetailFragment) getFragmentManager()
+                .findFragmentById(R.id.detailFragment);
+        if (fragment != null && fragment.isInLayout()) {
+            fragment.setText(link);
+        }
     }
 }
